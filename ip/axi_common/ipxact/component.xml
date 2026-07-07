@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipxact:component
+    xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+  <ipxact:vendor>weft</ipxact:vendor>
+  <ipxact:library>axi</ipxact:library>
+  <ipxact:name>weft_axi_common</ipxact:name>
+  <ipxact:version>0.1.0</ipxact:version>
+  <ipxact:model>
+    <ipxact:views>
+      <ipxact:view>
+        <ipxact:name>rtl</ipxact:name>
+        <ipxact:componentInstantiationRef>rtl_impl</ipxact:componentInstantiationRef>
+      </ipxact:view>
+    </ipxact:views>
+    <ipxact:instantiations>
+      <ipxact:componentInstantiation>
+        <ipxact:name>rtl_impl</ipxact:name>
+        <ipxact:language>systemVerilog</ipxact:language>
+        <ipxact:fileSetRef>
+          <ipxact:localName>rtl_files</ipxact:localName>
+        </ipxact:fileSetRef>
+      </ipxact:componentInstantiation>
+    </ipxact:instantiations>
+  </ipxact:model>
+  <ipxact:fileSets>
+    <ipxact:fileSet>
+      <ipxact:name>rtl_files</ipxact:name>
+      <ipxact:file>
+        <ipxact:name>../rtl/weft_axi_pkg.sv</ipxact:name>
+        <ipxact:fileType>systemVerilogSource</ipxact:fileType>
+      </ipxact:file>
+      <ipxact:file>
+        <ipxact:name>../rtl/weft_axi_typedef.svh</ipxact:name>
+        <ipxact:fileType>systemVerilogSource</ipxact:fileType>
+        <ipxact:isIncludeFile>true</ipxact:isIncludeFile>
+      </ipxact:file>
+      <ipxact:file>
+        <ipxact:name>../rtl/weft_axi_cut.sv</ipxact:name>
+        <ipxact:fileType>systemVerilogSource</ipxact:fileType>
+      </ipxact:file>
+      <ipxact:dependency>../rtl</ipxact:dependency>
+    </ipxact:fileSet>
+  </ipxact:fileSets>
+  <ipxact:description>Weft shared AXI4 types (package + typedef header) and generic AXI plumbing (register slice). Depends on weft:common. The typedef header is an include file; ../rtl is added as an include directory.</ipxact:description>
+</ipxact:component>

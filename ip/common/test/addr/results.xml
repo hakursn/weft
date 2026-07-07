@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1783459217" />
+    <testcase name="addr_decode_check" classname="test_addr" file="/mnt/c/Users/kursu/Desktop/hasankursun/weft/ip/common/test/addr/test_addr.py" lineno="10" time="0.04939913749694824" sim_time_ns="507.0" ratio_time="10263.337088250199" />
+  </testsuite>
+</testsuites>

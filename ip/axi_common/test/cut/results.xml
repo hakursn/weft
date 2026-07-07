@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1783460990" />
+    <testcase name="cut_axi" classname="test_cut" file="/mnt/c/Users/kursu/Desktop/hasankursun/weft/ip/axi_common/test/cut/test_cut.py" lineno="6" time="0.2998790740966797" sim_time_ns="3900.0" ratio_time="13005.242235550779" />
+  </testsuite>
+</testsuites>
