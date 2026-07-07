@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1783444221" />
+    <testcase name="skid_random" classname="test_skid" file="/mnt/c/Users/kursu/Desktop/hasankursun/weft/ip/common/test/skid/test_skid.py" lineno="8" time="0.7778546810150146" sim_time_ns="40020.0" ratio_time="51449.19864437701" />
+  </testsuite>
+</testsuites>
