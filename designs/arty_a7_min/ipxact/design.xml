@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Weft design stub — instances + interconnections assembled in Kactus2. -->
+<ipxact:design xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014">
+  <ipxact:vendor>weft</ipxact:vendor>
+  <ipxact:library>design</ipxact:library>
+  <ipxact:name>arty_a7_min</ipxact:name>
+  <ipxact:version>0.1.0</ipxact:version>
+</ipxact:design>

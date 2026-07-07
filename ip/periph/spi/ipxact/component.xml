@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Weft IP-XACT component stub. Expanded/managed in Kactus2. -->
+<ipxact:component
+    xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ipxact:vendor>weft</ipxact:vendor>
+  <ipxact:library>ip</ipxact:library>
+  <ipxact:name>spi</ipxact:name>
+  <ipxact:version>0.1.0</ipxact:version>
+  <!-- TODO in Kactus2:
+         role: AXI-Lite peripheral
+         - bus interfaces (AXI4 / AXI4-Lite / AXI-Stream)
+         - model views: rtl_generic (+ xilinx where tech-specific)
+         - fileSets -> rtl/ (and tech/<family>/)
+         - ports and parameters -->
+</ipxact:component>

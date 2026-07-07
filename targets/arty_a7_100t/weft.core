@@ -1,0 +1,27 @@
+CAPI=2:
+
+name: "weft:soc:arty_a7_min:0.1.0"
+description: "Weft minimal SoC — Arty A7-100T bring-up target"
+
+filesets:
+  rtl:
+    file_type: systemVerilogSource
+    files: []            # generated top + IP RTL are listed here
+
+  constraints:
+    file_type: xdc
+    files:
+      - arty_a7_100t.xdc
+
+targets:
+  default:
+    filesets: [rtl]
+
+  arty:
+    description: "Synthesize and implement on Arty A7-100T"
+    default_tool: vivado
+    filesets: [rtl, constraints]
+    toplevel: weft_soc_top
+    tools:
+      vivado:
+        part: xc7a100tcsg324-1

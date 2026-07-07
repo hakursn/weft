@@ -1,0 +1,33 @@
+# Generated output
+/output/
+*.bit
+*.bin
+*.mcs
+
+# Vivado / Xilinx
+*.jou
+*.log
+.Xil/
+*.cache/
+*.hw/
+*.ip_user_files/
+*.runs/
+*.sim/
+*.gen/
+webtalk*.jou
+webtalk*.log
+usage_statistics_webtalk*
+
+# FuseSoC / Edalize
+/build/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Editors / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
