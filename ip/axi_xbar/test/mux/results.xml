@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1783512756" />
+    <testcase name="mux_merge" classname="test_mux" file="/mnt/c/Users/kursu/Desktop/hasankursun/weft/ip/axi_xbar/test/mux/test_mux.py" lineno="6" time="0.4443185329437256" sim_time_ns="6060.0" ratio_time="13638.86390209953" />
+  </testsuite>
+</testsuites>

@@ -31,3 +31,11 @@ __pycache__/
 .idea/
 *.swp
 .DS_Store
+
+# --- RTL sim / test build artifacts ---
+obj_dir/          # verilator --binary output (run_sv.sh)
+sim_build/        # cocotb + verilator build dir (make)
+results.xml       # cocotb test results
+__pycache__/      # python bytecode from test_*.py
+*.vcd             # waveforms
+*.fst
