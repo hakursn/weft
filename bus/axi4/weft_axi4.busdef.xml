@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipxact:busDefinition
+    xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+  <ipxact:vendor>weft</ipxact:vendor>
+  <ipxact:library>bus</ipxact:library>
+  <ipxact:name>axi4</ipxact:name>
+  <ipxact:version>0.1.0</ipxact:version>
+  <ipxact:directConnection>true</ipxact:directConnection>
+  <ipxact:isAddressable>true</ipxact:isAddressable>
+  <ipxact:description>Weft AXI4 (full) bus definition. Point-to-point manager/subordinate, addressable. Concrete signal set is in the companion abstractionDefinition weft:bus:axi4.rtl:0.1.0.</ipxact:description>
+</ipxact:busDefinition>

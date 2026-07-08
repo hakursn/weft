@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1783525796" />
+    <testcase name="err_slv_errors" classname="test_err_slv" file="/mnt/c/Users/kursu/Desktop/hasankursun/weft/ip/axi_xbar/test/err_slv/test_err_slv.py" lineno="20" time="0.07875871658325195" sim_time_ns="460.0" ratio_time="5840.623361526678" />
+  </testsuite>
+</testsuites>

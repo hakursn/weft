@@ -1,16 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Weft IP-XACT component stub. Expanded/managed in Kactus2. -->
 <ipxact:component
     xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
   <ipxact:vendor>weft</ipxact:vendor>
-  <ipxact:library>ip</ipxact:library>
-  <ipxact:name>axi_xbar</ipxact:name>
+  <ipxact:library>axi</ipxact:library>
+  <ipxact:name>weft_axi_xbar</ipxact:name>
   <ipxact:version>0.1.0</ipxact:version>
-  <!-- TODO in Kactus2:
-         role: AXI4 / AXI4-Lite crossbar (wraps pulp axi_xbar)
-         - bus interfaces (AXI4 / AXI4-Lite / AXI-Stream)
-         - model views: rtl_generic (+ xilinx where tech-specific)
-         - fileSets -> rtl/ (and tech/<family>/)
-         - ports and parameters -->
+  <ipxact:model>
+    <ipxact:views>
+      <ipxact:view>
+        <ipxact:name>rtl</ipxact:name>
+        <ipxact:componentInstantiationRef>rtl_impl</ipxact:componentInstantiationRef>
+      </ipxact:view>
+    </ipxact:views>
+    <ipxact:instantiations>
+      <ipxact:componentInstantiation>
+        <ipxact:name>rtl_impl</ipxact:name>
+        <ipxact:language>systemVerilog</ipxact:language>
+        <ipxact:moduleName>weft_axi_xbar</ipxact:moduleName>
+        <ipxact:moduleParameters>
+          <ipxact:moduleParameter dataType="int">
+            <ipxact:name>NoSlvPorts</ipxact:name>
+            <ipxact:description>Number of manager (slave) ports.</ipxact:description>
+            <ipxact:value>2</ipxact:value>
+          </ipxact:moduleParameter>
+          <ipxact:moduleParameter dataType="int">
+            <ipxact:name>NoMstPorts</ipxact:name>
+            <ipxact:description>Number of subordinate (master) ports.</ipxact:description>
+            <ipxact:value>2</ipxact:value>
+          </ipxact:moduleParameter>
+          <ipxact:moduleParameter dataType="int">
+            <ipxact:name>SlvIdWidth</ipxact:name>
+            <ipxact:description>Manager-side AXI id width. Subordinate-side id width must be SlvIdWidth + clog2(NoSlvPorts).</ipxact:description>
+            <ipxact:value>4</ipxact:value>
+          </ipxact:moduleParameter>
+          <ipxact:moduleParameter dataType="int">
+            <ipxact:name>NoRules</ipxact:name>
+            <ipxact:description>Number of address-map rules in AddrMap.</ipxact:description>
+            <ipxact:value>2</ipxact:value>
+          </ipxact:moduleParameter>
+          <ipxact:moduleParameter dataType="int">
+            <ipxact:name>MaxTxns</ipxact:name>
+            <ipxact:description>Max outstanding transactions per direction (demux counters + mux W-select FIFO depth).</ipxact:description>
+            <ipxact:value>8</ipxact:value>
+          </ipxact:moduleParameter>
+        </ipxact:moduleParameters>
+        <ipxact:fileSetRef>
+          <ipxact:localName>rtl_files</ipxact:localName>
+        </ipxact:fileSetRef>
+      </ipxact:componentInstantiation>
+    </ipxact:instantiations>
+  </ipxact:model>
+  <ipxact:fileSets>
+    <ipxact:fileSet>
+      <ipxact:name>rtl_files</ipxact:name>
+      <ipxact:file>
+        <ipxact:name>../rtl/weft_axi_demux.sv</ipxact:name>
+        <ipxact:fileType>systemVerilogSource</ipxact:fileType>
+      </ipxact:file>
+      <ipxact:file>
+        <ipxact:name>../rtl/weft_axi_mux.sv</ipxact:name>
+        <ipxact:fileType>systemVerilogSource</ipxact:fileType>
+      </ipxact:file>
+      <ipxact:file>
+        <ipxact:name>../rtl/weft_axi_err_slv.sv</ipxact:name>
+        <ipxact:fileType>systemVerilogSource</ipxact:fileType>
+      </ipxact:file>
+      <ipxact:file>
+        <ipxact:name>../rtl/weft_axi_xbar.sv</ipxact:name>
+        <ipxact:fileType>systemVerilogSource</ipxact:fileType>
+      </ipxact:file>
+      <ipxact:dependency>../rtl</ipxact:dependency>
+      <ipxact:dependency>../../axi_common/rtl</ipxact:dependency>
+      <ipxact:dependency>../../common/rtl</ipxact:dependency>
+    </ipxact:fileSet>
+  </ipxact:fileSets>
+  <ipxact:description>Weft AXI4 crossbar: NoSlvPorts managers x NoMstPorts subordinates, built from weft_axi_demux, weft_axi_mux and weft_axi_err_slv (per-manager decode + demux, per-subordinate mux, per-manager error slave on decode miss). Top module weft_axi_xbar. Depends on weft:axi:weft_axi_common (weft_axi_pkg, weft_axi_typedef) and weft:common (weft_addr_decode, weft_rr_arbiter, weft_sync_fifo); those sibling rtl dirs are added as include dependencies. Type parameters (slv_req_t/slv_rsp_t/mst_req_t/mst_rsp_t) and the address map (AddrMap, array of xbar_rule_t) are set at elaboration; subordinate-side id width must be SlvIdWidth + clog2(NoSlvPorts). AXI bus interfaces (busInterface abstraction) are not yet declared and will be added with the shared AXI abstraction definition.</ipxact:description>
 </ipxact:component>

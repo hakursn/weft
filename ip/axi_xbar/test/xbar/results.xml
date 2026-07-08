@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1783526398" />
+    <testcase name="xbar_route" classname="test_xbar" file="/mnt/c/Users/kursu/Desktop/hasankursun/weft/ip/axi_xbar/test/xbar/test_xbar.py" lineno="18" time="0.38608622550964355" sim_time_ns="4350.0" ratio_time="11266.913224521" />
+  </testsuite>
+</testsuites>
