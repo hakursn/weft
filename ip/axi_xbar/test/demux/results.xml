@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1783508906" />
+    <testcase name="demux_route" classname="test_demux" file="/mnt/c/Users/kursu/Desktop/hasankursun/weft/ip/axi_xbar/test/demux/test_demux.py" lineno="6" time="0.302356481552124" sim_time_ns="3780.0" ratio_time="12501.799136554497" />
+  </testsuite>
+</testsuites>
