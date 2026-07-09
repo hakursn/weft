@@ -115,6 +115,29 @@ def sx(v,bits):
     v&=(1<<bits)-1
     return v-(1<<bits) if v&(1<<(bits-1)) else v
 
+
+# ---- shared ALU / branch semantics (single source for RTL cross-check) ----
+ALU_OPS = ["add","sub","sll","slt","sltu","xor","srl","sra","or","and"]  # index == warp_pkg enum
+
+def alu(op, x, y):
+    x &= 0xffffffff; y &= 0xffffffff
+    if op=='add':  return (x+y)&0xffffffff
+    if op=='sub':  return (x-y)&0xffffffff
+    if op=='sll':  return (x<<(y&31))&0xffffffff
+    if op=='srl':  return (x>>(y&31))
+    if op=='sra':  return (sx(x,32)>>(y&31))&0xffffffff
+    if op=='or':   return x|y
+    if op=='and':  return x&y
+    if op=='xor':  return x^y
+    if op=='slt':  return 1 if sx(x,32)<sx(y,32) else 0
+    if op=='sltu': return 1 if x<y else 0
+    raise ValueError(op)
+
+def branch_taken(f3, a, b):
+    a &= 0xffffffff; b &= 0xffffffff
+    return {0:a==b,1:a!=b,4:sx(a,32)<sx(b,32),5:sx(a,32)>=sx(b,32),
+            6:a<b,7:a>=b}[f3]
+
 class ISS:
     def __init__(self, words, base=0x80000000, finish=0x00001000):
         self.mem=bytearray(1<<20)          # 1 MiB flat, wraps by mask
@@ -142,18 +165,6 @@ class ISS:
         immU=ins&0xfffff000
         immJ=sx((((ins>>31)&1)<<20)|(((ins>>12)&0xff)<<12)|(((ins>>20)&1)<<11)|(((ins>>21)&0x3ff)<<1),21)
         wb=None; npc=(pc+4)&0xffffffff; ma=mw=ms=None; fin=False
-        def alu(op,x,y):
-            x&=0xffffffff; y&=0xffffffff
-            if op=='add': return (x+y)&0xffffffff
-            if op=='sub': return (x-y)&0xffffffff
-            if op=='sll': return (x<<(y&31))&0xffffffff
-            if op=='srl': return (x>>(y&31))
-            if op=='sra': return (sx(x,32)>>(y&31))&0xffffffff
-            if op=='or':  return x|y
-            if op=='and': return x&y
-            if op=='xor': return x^y
-            if op=='slt': return 1 if sx(x,32)<sx(y,32) else 0
-            if op=='sltu':return 1 if x<y else 0
         if op==0x33:
             key={(0x00,0):'add',(0x20,0):'sub',(0x00,1):'sll',(0x00,2):'slt',(0x00,3):'sltu',
                  (0x00,4):'xor',(0x00,5):'srl',(0x20,5):'sra',(0x00,6):'or',(0x00,7):'and'}[(f7,f3)]
@@ -172,7 +183,7 @@ class ISS:
         elif op==0x6f: wb=npc; npc=(pc+immJ)&0xffffffff
         elif op==0x67: wb=npc; npc=(a+immI)&0xfffffffe
         elif op==0x63:
-            take={0:a==b,1:a!=b,4:sx(a,32)<sx(b,32),5:sx(a,32)>=sx(b,32),6:a<b,7:a>=b}[f3]
+            take=branch_taken(f3,a,b)
             if take: npc=(pc+immB)&0xffffffff
         elif op==0x03:
             ea=(a+immI)&0xffffffff; w=self.rd32(ea&~3); sh=(ea&3)*8
