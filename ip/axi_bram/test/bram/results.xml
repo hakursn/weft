@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1783545746" />
+    <testcase name="bram_rw" classname="test_bram" file="/mnt/c/Users/kursu/Desktop/hasankursun/weft/ip/axi_bram/test/bram/test_bram.py" lineno="6" time="0.34644365310668945" sim_time_ns="8070.0" ratio_time="23293.83126991446" />
+  </testsuite>
+</testsuites>
