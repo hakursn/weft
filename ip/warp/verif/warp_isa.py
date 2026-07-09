@@ -140,15 +140,12 @@ def branch_taken(f3, a, b):
 
 class ISS:
     def __init__(self, words, base=0x80000000, finish=0x00001000):
-        self.mem=bytearray(1<<20)          # 1 MiB flat, wraps by mask
+        self.mem={}                        # word-addressed dict, full 32-bit space (no aliasing)
         self.base=base; self.finish=finish
         for i,w in enumerate(words): self.wr32(base+4*i, w)
         self.reg=[0]*32; self.pc=base; self.trace=[]
-    def _idx(self,a): return a & ((1<<20)-1)
-    def rd32(self,a):
-        i=self._idx(a); return int.from_bytes(self.mem[i:i+4],'little')
-    def wr32(self,a,v):
-        i=self._idx(a); self.mem[i:i+4]=(v&0xffffffff).to_bytes(4,'little')
+    def rd32(self,a): return self.mem.get((a>>2)&0xffffffff, 0)
+    def wr32(self,a,v): self.mem[(a>>2)&0xffffffff]=v&0xffffffff
     def run(self,max_steps=100000):
         for _ in range(max_steps):
             pc=self.pc; ins=self.rd32(pc)
