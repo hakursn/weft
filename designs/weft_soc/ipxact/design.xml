@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipxact:design xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+  <ipxact:vendor>weft</ipxact:vendor>
+  <ipxact:library>designs</ipxact:library>
+  <ipxact:name>weft_soc</ipxact:name>
+  <ipxact:version>0.1.0</ipxact:version>
+  <ipxact:componentInstances>
+    <ipxact:componentInstance>
+      <ipxact:instanceName>u_cpu</ipxact:instanceName>
+      <ipxact:componentRef vendor="weft" library="ip" name="warp_axi_flat" version="0.1.0"/>
+    </ipxact:componentInstance>
+    <ipxact:componentInstance>
+      <ipxact:instanceName>u_xbar</ipxact:instanceName>
+      <ipxact:componentRef vendor="weft" library="ip" name="weft_axi_xbar" version="0.1.0"/>
+    </ipxact:componentInstance>
+    <ipxact:componentInstance>
+      <ipxact:instanceName>u_bram</ipxact:instanceName>
+      <ipxact:componentRef vendor="weft" library="ip" name="weft_axi_bram" version="0.1.0"/>
+    </ipxact:componentInstance>
+    <ipxact:componentInstance>
+      <ipxact:instanceName>u_uart</ipxact:instanceName>
+      <ipxact:componentRef vendor="weft" library="ip" name="weft_uart_flat" version="0.1.0"/>
+    </ipxact:componentInstance>
+  </ipxact:componentInstances>
+  <ipxact:interconnections>
+    <!-- u_cpu.i_axi, u_cpu.d_axi -> u_xbar slave ports; u_xbar master ports -> u_bram.s_axi (0x80000000/64KiB), u_uart.s_axi (0x10000000/4KiB) -->
+  </ipxact:interconnections>
+</ipxact:design>

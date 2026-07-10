@@ -1,0 +1,5 @@
+{"name":"axi_bram","requires":["axi_common"],"module":"weft_axi_bram",
+ "files":["rtl/weft_axi_bram.sv"],
+ "clock":"clk_i","reset":"rst_ni",
+ "params":{"MemWords":"1024","InitFile":"\"\""},
+ "interfaces":[{"name":"s_axi","mode":"subordinate","req":"slv_req_i","rsp":"slv_rsp_o"}]}

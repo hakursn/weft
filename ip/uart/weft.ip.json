@@ -1,0 +1,6 @@
+{"name":"uart","requires":["axi_common"],"module":"weft_uart",
+ "files":["rtl/weft_uart.sv"],
+ "clock":"clk_i","reset":"rst_ni",
+ "params":{"CLKS_PER_BIT":"868"},
+ "interfaces":[{"name":"s_axi","mode":"subordinate","req":"slv_req_i","rsp":"slv_rsp_o"}],
+ "other_ports":[{"name":"tx_o","dir":"out"}]}

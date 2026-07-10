@@ -1,0 +1,2 @@
+{"name":"common","requires":[],
+ "files":["rtl/weft_skid_buffer.sv","rtl/weft_rr_arbiter.sv","rtl/weft_sync_fifo.sv","rtl/weft_addr_decode.sv"]}

@@ -1,0 +1,2 @@
+{"name":"axi_xbar","requires":["common","axi_common"],"fabric":true,"module":"weft_axi_xbar",
+ "files":["rtl/weft_axi_demux.sv","rtl/weft_axi_mux.sv","rtl/weft_axi_err_slv.sv","rtl/weft_axi_xbar.sv"]}

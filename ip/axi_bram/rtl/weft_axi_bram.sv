@@ -12,7 +12,8 @@
 module weft_axi_bram import weft_axi_pkg::*; #(
   parameter type         req_t    = logic,
   parameter type         rsp_t    = logic,
-  parameter int unsigned MemWords = 1024
+  parameter int unsigned MemWords = 1024,
+  parameter string       InitFile = ""
 ) (
   input  wire  clk_i,
   input  wire  rst_ni,
@@ -25,6 +26,7 @@ module weft_axi_bram import weft_axi_pkg::*; #(
   localparam int unsigned IdxW    = (MemWords > 1) ? $clog2(MemWords) : 1;
 
   logic [DataW-1:0] mem [MemWords];
+  initial if (InitFile != "") $readmemh(InitFile, mem);
 
   typedef enum logic [1:0] {W_IDLE, W_DATA, W_RESP} w_e; w_e w_q;
   logic [IdxW-1:0]                    waddr_q;

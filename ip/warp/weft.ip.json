@@ -1,0 +1,12 @@
+{"name":"warp","requires":["axi_common"],"module":"warp_axi",
+ "files":["rtl/warp_pkg.sv","rtl/warp_regfile.sv","rtl/warp_decoder.sv","rtl/warp_alu.sv",
+          "rtl/warp_branch.sv","rtl/warp_axi_ifetch.sv","rtl/warp_axi_lsu.sv","rtl/warp_core.sv","rtl/warp_axi.sv"],
+ "clock":"clk_i","reset":"rst_ni",
+ "params":{"RESET_ADDR":"32'h8000_0000"},
+ "interfaces":[{"name":"i_axi","mode":"manager","req":"i_req_o","rsp":"i_rsp_i"},
+               {"name":"d_axi","mode":"manager","req":"d_req_o","rsp":"d_rsp_i"}],
+ "other_ports":[{"name":"retire_valid_o","dir":"out"},{"name":"retire_pc_o","dir":"out"},
+                {"name":"retire_instr_o","dir":"out"},{"name":"retire_rd_o","dir":"out"},
+                {"name":"retire_rd_wdata_o","dir":"out"},{"name":"retire_mem_valid_o","dir":"out"},
+                {"name":"retire_mem_addr_o","dir":"out"},{"name":"retire_mem_wstrb_o","dir":"out"},
+                {"name":"retire_mem_wdata_o","dir":"out"}]}

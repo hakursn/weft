@@ -1,0 +1,19 @@
+{"name":"weft_soc",
+ "clock":"clk_i","reset":{"port":"arst_ni","kind":"async_low","sync":true},
+ "manager_id_width":4,
+ "top_params":[
+   {"name":"MEM_INIT","type":"string","default":"\"\""},
+   {"name":"MEM_WORDS","type":"int unsigned","default":"16384"},
+   {"name":"UART_CPB","type":"int unsigned","default":"868"},
+   {"name":"RESET_ADDR","type":"logic [31:0]","default":"32'h8000_0000"}],
+ "instances":[
+   {"name":"u_cpu","ip":"warp","params":{"RESET_ADDR":"RESET_ADDR"}},
+   {"name":"u_bram","ip":"axi_bram","params":{"MemWords":"MEM_WORDS","InitFile":"MEM_INIT"}},
+   {"name":"u_uart","ip":"uart","params":{"CLKS_PER_BIT":"UART_CPB"}}],
+ "address_map":[
+   {"subordinate":"u_bram.s_axi","base":"0x80000000","size":"0x10000"},
+   {"subordinate":"u_uart.s_axi","base":"0x10000000","size":"0x1000"}],
+ "expose":[
+   {"port":"u_uart.tx_o","as":"uart_tx_o"},
+   {"port":"u_cpu.retire_valid_o","as":"retire_valid_o"},
+   {"port":"u_cpu.retire_pc_o","as":"retire_pc_o"}]}

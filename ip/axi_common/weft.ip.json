@@ -1,0 +1,2 @@
+{"name":"axi_common","requires":[],"include_dirs":["rtl"],
+ "files":["rtl/weft_axi_pkg.sv"]}
